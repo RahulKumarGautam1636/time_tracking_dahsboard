@@ -148,16 +148,21 @@
     const previousHours = document.querySelector("#previous-" + item + "-hours");
     hours.innerText = data[name][item].time;
     previousHours.innerText = data[name][item].lastTime;
-    const daily = document.querySelector("#daily");
-    const weekly = document.querySelector("#weekly");
-    const monthly = document.querySelector("#monthly");
-    daily.style.color = "hsl(235, 45%, 61%)";
-    weekly.style.color = "hsl(235, 45%, 61%)";
-    monthly.style.color = "hsl(235, 45%, 61%)";
-    const current = document.querySelector("#"+name);
-    current.style.color = "white";
   });
+    switchTextColor(name);
   }
+
+  const periodType = ["daily", "weekly", "monthly"];
+
+  const switchTextColor = (name) => {
+    periodType.forEach((item, i) => {
+      const period = document.querySelector("#" + item);
+      period.style.color = "hsl(235, 45%, 61%)";
+    });
+    const currentPeriodType = document.querySelector("#"+name);
+    currentPeriodType.style.color = "hsl(220deg 100% 99%)";
+  }
+  switchTextColor("weekly");
 
 </script>
 </body>
