@@ -4,7 +4,9 @@
   box-sizing: border-box;
 }
 main {
-  height: 100vh;
+  padding: 2rem 0;
+  height: auto;
+  min-height: 100vh;
   display: grid;
   place-items: center;
   background: hsl(226, 43%, 10%);
@@ -26,6 +28,7 @@ main {
   /* width: 62rem; */
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 .profile_container {
   width: 16rem;
@@ -145,4 +148,47 @@ main {
 }
 .period h3 {
   font-weight: 400;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 1080px) {
+  .container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .profile_container {
+    width: 95%;
+    max-width: 22rem;
+    margin-right: 0;
+  }
+  .cards_container {
+    width: 100%;
+  }
+  .cards_container > div {
+    flex-direction: column;
+    align-items: center;
+  }
+  .cards {
+    height: 13rem;
+    width: 95%;
+    max-width: 22rem;
+    margin: 1rem 0 0 0;
+  }
+  .inner_card div:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .inner_card div:last-child h1 {
+    font-size: 2rem;
+  }
+  .period {
+    padding: 0;
+    align-items: center;
+    height: 5rem;
+    flex-direction: row;
+  }
 }
