@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Time tracking dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Rubik:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <div class="container">
+      <div class="profile_container">
+        <div class="avatar_box">
+          <!-- <div>
+          </div> -->
+            <img id="avatar" src="images\image-jeremy.png" alt="avatar">
+          <div>
+            <p>Report for</p>
+            <h1>Jeremy Robson</h1>
+          </div>
+        </div>
+        <div class="period">
+         <h3 onclick="switchPeriod('daily')" id="daily">Daily</h3>
+         <h3 onclick="switchPeriod('weekly')" id="weekly">Weekly</h3>
+         <h3 onclick="switchPeriod('monthly')" id="monthly">Monthly</h3>
+       </div>
+      </div>
+      <div class="cards_container">
+        <div class="top_section">
+
+          <div id="one" class="cards">
+            <div class="inner_card">
+              <div>
+                <h3>Work</h3>
+                <img src="images/icon-ellipsis.svg" alt="ellipsis">
+              </div>
+              <div>
+                 <h1 id="work-hours">32hrs</h1>
+                 <p>Last Week - <span id="previous-work-hours">36hrs</span></p>
+              </div>
+            </div>
+          </div>
+          <div id="two" class="cards">
+            <div class="inner_card">
+              <div>
+                <h3>Play</h3>
+                <img src="images/icon-ellipsis.svg" alt="ellipsis">
+              </div>
+              <div>
+                 <h1 id="play-hours">10hrs</h1>
+                 <p>Last Week - <span id="previous-play-hours">8hrs</span></p>
+              </div>
+            </div>
+          </div>
+          <div id="three" class="cards">
+            <div class="inner_card">
+              <div>
+                <h3>Study</h3>
+                <img src="images/icon-ellipsis.svg" alt="ellipsis">
+              </div>
+              <div>
+                 <h1 id="study-hours">4hrs</h1>
+                 <p>Last Week - <span id="previous-study-hours">7hrs</span></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="botton_section">
+
+          <div id="four" class="cards">
+            <div class="inner_card">
+              <div>
+                <h3>Exercise</h3>
+                <img src="images/icon-ellipsis.svg" alt="ellipsis">
+              </div>
+              <div>
+                 <h1 id="exercise-hours">4hrs</h1>
+                 <p>Last Week - <span id="previous-exercise-hours">5hrs</span></p>
+              </div>
+            </div>
+          </div>
+          <div id="five" class="cards">
+            <div class="inner_card">
+              <div>
+                <h3>Social</h3>
+                <img src="images/icon-ellipsis.svg" alt="ellipsis">
+              </div>
+              <div>
+                 <h1 id="social-hours">5hrs</h1>
+                 <p>Last Week - <span id="previous-social-hours">10hrs</span></p>
+              </div>
+            </div>
+          </div>
+          <div id="six" class="cards">
+            <div class="inner_card">
+              <div>
+                <h3>Self Care</h3>
+                <img src="images/icon-ellipsis.svg" alt="ellipsis">
+              </div>
+              <div>
+                 <h1 id="self_care-hours">2hrs</h1>
+                 <p>Last Week - <span id="previous-self_care-hours">2hrs</span></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- <img src="design/active-states.jpg" alt="active"> -->
+  </main>
+
+<script>
+  const data = {daily: {work: {time: "5hrs", lastTime: "7hrs"},
+                        play: {time: "10hrs", lastTime: "8hrs"},
+                        study: {time: "0hrs", lastTime: "1hrs"},
+                        exercise: {time: "1hrs", lastTime: "1hrs"},
+                        social: {time: "1hrs", lastTime: "3hrs"},
+                        self_care: {time: "0hrs", lastTime: "1hrs"} },
+
+                       weekly: {work: {time: "32hrs", lastTime: "36hrs"},
+                        play: {time: "10hrs", lastTime: "8hrs"},
+                        study: {time: "4hrs", lastTime: "7hrs"},
+                        exercise: {time: "4hrs", lastTime: "5hrs"},
+                        social: {time: "5hrs", lastTime: "10hrs"},
+                        self_care: {time: "2hrs", lastTime: "2hrs"}},
+
+                        monthly: {work: {time: "103hrs", lastTime: "128hrs"},
+                         play: {time: "23hrs", lastTime: "29hrs"},
+                         study: {time: "13hrs", lastTime: "19hrs"},
+                         exercise: {time: "11hrs", lastTime: "18hrs"},
+                         social: {time: "21hrs", lastTime: "23hrs"},
+                         self_care: {time: "7hrs", lastTime: "11hrs"}},
+              };
+  const activity = ["work", "play", "study", "exercise", "social", "self_care"];
+
+  const switchPeriod = (name) => {
+    activity.forEach((item, i) => {
+    const hours = document.querySelector("#" + item + "-hours");
+    const previousHours = document.querySelector("#previous-" + item + "-hours");
+    hours.innerText = data[name][item].time;
+    previousHours.innerText = data[name][item].lastTime;
+    const daily = document.querySelector("#daily");
+    const weekly = document.querySelector("#weekly");
+    const monthly = document.querySelector("#monthly");
+    daily.style.color = "hsl(235, 45%, 61%)";
+    weekly.style.color = "hsl(235, 45%, 61%)";
+    monthly.style.color = "hsl(235, 45%, 61%)";
+    const current = document.querySelector("#"+name);
+    current.style.color = "white";
+  });
+  }
+
+</script>
+</body>
+</html>
